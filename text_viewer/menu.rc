@@ -1,0 +1,14 @@
+#include "menu.h"
+
+woof MENU
+{
+    POPUP "&File"
+    {
+        MENUITEM "&Open",  MENU_OPEN
+    }
+    POPUP "&Mode"
+    {
+        MENUITEM "&Original", MENU_ORIGINAL,  CHECKED
+        MENUITEM "&Formatted", MENU_FORMATTED
+    }
+}

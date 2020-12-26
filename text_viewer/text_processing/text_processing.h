@@ -1,9 +1,15 @@
-#ifndef __TEXT_PROCESSOR_H_
-#define __TEXT_PROCESSOR_H_
 
+#ifndef __TEXT_PROCESSING_H_
+#define __TEXT_PROCESSING_H_
 #include <windows.h>
 
-#include "menu.h"
+#ifdef BUILD_DLL
+    #define DLL_EXPORT __declspec(dllexport)
+#else
+    #define DLL_EXPORT __declspec(dllimport)
+#endif
+
+#include "..\menu.h"
 
 /* Render mode */
 typedef enum
@@ -29,6 +35,14 @@ typedef struct tagTEXTRNDDATA {
                              */
 } TEXTRNDDATA;
 
+
+
+
+ #ifdef __cplusplus
+extern "C"
+{
+#endif
+
 /* Read file functions.
  * ARGUMENTS:
  *   IN:
@@ -40,7 +54,10 @@ typedef struct tagTEXTRNDDATA {
  * RETURNS:
  *   (BOOL) TRUE if success, FALSE otherwise.
  */
-BOOL readFile( char const *name, TEXTDATA *data );
+
+BOOL DLL_EXPORT readFile( char const *name, TEXTDATA *data );
+
+
 
 /* Find width of the widest string in text function.
  * ARGUMENTS:
@@ -52,7 +69,7 @@ BOOL readFile( char const *name, TEXTDATA *data );
  * RETURNS:
  *   (int) width of the widest string.
  */
-int findMaxStrWidth( TEXTDATA *td, int yStart, int yEnd );
+int DLL_EXPORT findMaxStrWidth( TEXTDATA *td, int yStart, int yEnd );
 
 /* Free memory function.
  * ARGUMENTS:
@@ -61,7 +78,7 @@ int findMaxStrWidth( TEXTDATA *td, int yStart, int yEnd );
  *       TEXTDATA *data;
  * RETURNS: None.
  */
-void freeTextData( TEXTDATA *td );
+void DLL_EXPORT freeTextData( TEXTDATA *td );
 
 /* Find string length in bytes function.
  * ARGUMENTS:
@@ -73,7 +90,7 @@ void freeTextData( TEXTDATA *td );
  * RETURNS:
  *   (int) string length.
  */
-int strByteLength( TEXTDATA *td, int number );
+int DLL_EXPORT strByteLength( TEXTDATA *td, int number );
 
 /* Find string length in chars function.
  * ARGUMENTS:
@@ -85,7 +102,7 @@ int strByteLength( TEXTDATA *td, int number );
  * RETURNS:
  *   (int) string length.
  */
-int strTextLength( TEXTDATA *td, int number );
+int DLL_EXPORT strTextLength( TEXTDATA *td, int number );
 
 /* Count of lines to be rendered in LAYOUT mode.
  * ARGUMENTS:
@@ -96,12 +113,19 @@ int strTextLength( TEXTDATA *td, int number );
  * RETURNS:
  *   (int) count of lines.
  */
-int linesInCurStr( int strTL, TEXTRNDDATA *trd );
+int DLL_EXPORT linesInCurStr( int strTL, TEXTRNDDATA *trd );
 
 /* find document end method.
  * endYLeftUp, endCurLineInStr are TEXTRNDDATA parameters
  * which will let us see document finish*/
-void endOfDocument( MODE m, TEXTDATA *td, TEXTRNDDATA *trd,
+void DLL_EXPORT endOfDocument( MODE m, TEXTDATA *td, TEXTRNDDATA *trd,
                     int *endYLeftUp, int *endCurLineInStr );
+
+
+
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -1,6 +1,7 @@
+
 #include <stdio.h>
 #include <stdlib.h>
-#include "text_processor.h"
+#include "text_processing.h"
 
 int symsCount( char *arr, int len, char sym )
 {
@@ -12,7 +13,7 @@ int symsCount( char *arr, int len, char sym )
     return cnt;
 }
 
-BOOL readFile( char const *name, TEXTDATA *data )
+BOOL DLL_EXPORT readFile( char const *name, TEXTDATA *data )
 {
     int i, curStr = 1, len;
     char *buf;
@@ -59,7 +60,7 @@ BOOL readFile( char const *name, TEXTDATA *data )
     return TRUE;
 }
 
-void freeTextData( TEXTDATA *td )
+void DLL_EXPORT freeTextData( TEXTDATA *td )
 {
     if (td->strOffsets != NULL)
     {
@@ -74,22 +75,22 @@ void freeTextData( TEXTDATA *td )
     }
 }
 
-int strByteLength( TEXTDATA *td, int number )
+int DLL_EXPORT strByteLength( TEXTDATA *td, int number )
 {
     return td->strOffsets[number + 1] - td->strOffsets[number];
 }
 
-int strTextLength( TEXTDATA *td, int number )
+int DLL_EXPORT strTextLength( TEXTDATA *td, int number )
 {
     return td->strOffsets[number + 1] - td->strOffsets[number] - (td->text[td->strOffsets[number + 1] - 2] == '\r');
 }
 
-int linesInCurStr( int strTL, TEXTRNDDATA *trd )
+int DLL_EXPORT linesInCurStr( int strTL, TEXTRNDDATA *trd )
 {
     return strTL / trd->symsPerW + (strTL % trd->symsPerW != 0);
 }
 
-int findMaxStrWidth( TEXTDATA *td, int yStart, int yEnd )
+int DLL_EXPORT findMaxStrWidth( TEXTDATA *td, int yStart, int yEnd )
 {
     int i;
     int maxLen = 0;
@@ -100,7 +101,7 @@ int findMaxStrWidth( TEXTDATA *td, int yStart, int yEnd )
     return maxLen;
 }
 
-void endOfDocument( MODE m, TEXTDATA *td, TEXTRNDDATA *trd,
+void DLL_EXPORT endOfDocument( MODE m, TEXTDATA *td, TEXTRNDDATA *trd,
                     int *endYLeftUp, int *endCurLineInStr )
 {
     int passed = 0;

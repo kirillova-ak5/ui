@@ -1,5 +1,7 @@
 #include "utils.h"
 
+
+
 int textWidthToHScroll( TEXTDATA *td, TEXTRNDDATA *trd, int minScroll, int maxScroll )
 {
     if (td->maxStrWidth - trd->symsPerW - 1 > 0)

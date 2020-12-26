@@ -1,7 +1,7 @@
 #ifndef __UTILS_H_
 #define __UTILS_H_
 
-#include "text_processor.h"
+#include "text_processing\text_processing.h"
 
 /* Move text with controls functions group.
  * ARGUMENTS:

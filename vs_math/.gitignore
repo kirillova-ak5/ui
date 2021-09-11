@@ -1,0 +1,22 @@
+# VSCode
+build/
+.vscode/
+
+# Visual Studio
+.vs/
+Debug/
+Release/
+
+# Cmake
+Makefile
+*.user
+packages/
+
+# CodeBlocks
+bin/
+obj/
+*.depend
+*.layout
+
+# Valgrind
+valgrind-report*

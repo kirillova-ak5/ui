@@ -1,0 +1,11 @@
+# Common
+*.png filter=lfs diff=lfs merge=lfs -text lockable
+*.jpg filter=lfs diff=lfs merge=lfs -text lockable
+*.pdf filter=lfs diff=lfs merge=lfs -text lockable
+
+# C/C++ binaries
+*.dll filter=lfs diff=lfs merge=lfs -text lockable
+*.exe filter=lfs diff=lfs merge=lfs -text lockable
+*.lib filter=lfs diff=lfs merge=lfs -text lockable
+*.pdb filter=lfs diff=lfs merge=lfs -text lockable
+
